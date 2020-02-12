@@ -1,0 +1,59 @@
+stages:
+  - compile
+  - package
+  - quality
+
+cache:
+  paths:
+    - $CI_PROJECT_DIR/.m2/repository/
+  key: "$CI_JOB_NAME"
+
+variables:
+  DOCKER_HOST: tcp://docker:2375
+
+services:
+  - docker:stable-dind
+
+image: openjdk:8-alpine
+
+build_job:
+  stage: compile
+  script:
+    - chmod +x ./mvnw
+    - ./mvnw compile
+      -Dhttps.protocols=TLSv1.2
+      -Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository
+      -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=DEBUG
+      -Dorg.slf4j.simpleLogger.showDateTime=true
+      -Djava.awt.headless=true
+      --batch-mode --errors  --fail-at-end --show-version
+
+package_job:
+  stage: package
+  script:
+    - chmod +x ./mvnw
+    - ./mvnw package -DskipTests=true
+      -Dhttps.protocols=TLSv1.2
+      -Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository
+      -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN
+      -Dorg.slf4j.simpleLogger.showDateTime=true
+      -Djava.awt.headless=true
+      --batch-mode --errors --fail-at-end --show-version
+
+code_quality_job:
+  stage: quality
+  image: docker:stable
+  script:
+    - mkdir ./codequality-results
+    - docker login registry.gitlab.com/lco3004/ocr_prj09 -u lco3004 -p Yodh_TmPHSyxLGwHAX_B
+    - docker run
+      --env CODECLIMATE_CODE="$PWD"
+      --volume "$PWD":/code
+      --volume /var/run/docker.sock:/var/run/docker.sock
+      --volume /tmp/cc:/tmp/cc
+      codeclimate/codeclimate analyze -f html > ./codequality-results/index.html
+  artifacts:
+    paths:
+      - ./codequality-results/
+
+
