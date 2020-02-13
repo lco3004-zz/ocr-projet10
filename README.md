@@ -26,11 +26,8 @@ Installation sous Windows
 
 Création  de la base  PostgreSql
 ---
-* Créer le répertoire des tablespaces :'c:\bd_data'
-* Sous pgsql, exécuter le script sql_uml/prep_projet07.sql
-* Sous pgadmin, attribuer le password projet07 au role rl_projet07
-* Choisir la base  db_projet07 - mdp identique au role rl_projet07
-* Enfin , exécuter sql_uml/create_tbl.sql
+* cd ${basedir]/sql_uml
+* docker-compose up -d
 
 Lancement des applications
 --
