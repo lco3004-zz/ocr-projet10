@@ -21,14 +21,19 @@
             <th class="text-left">Auteur</th>
             <th class="text-center">Titre</th>
             <th class="text-left">Quantite</th>
+            <th class="text-left">Nbre Resa</th>
         </tr>
         </thead>
 
         <tbody>
+        <!--/*@thymesVar id="nbreResa" type="fr.ocr.front_mvc.model.OuvrageWeb"*/-->
         <tr th:each="ouvrageWeb : ${ouvragesWebListe}">
             <td th:text="${ouvrageWeb.auteur}">Laurent</td>
             <td th:text="${ouvrageWeb.titre}">SpringMvc</td>
             <td th:text="${ouvrageWeb.quantite}">3</td>
+            <span th:if="${ouvrageWeb.quantite} == 0">
+                <td th:text="${ouvrageWeb.nbreResa}" >5</td>
+            </span>
         </tr>
         </tbody>
     </table>

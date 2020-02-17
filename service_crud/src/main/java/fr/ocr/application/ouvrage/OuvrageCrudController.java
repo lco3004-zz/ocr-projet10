@@ -32,7 +32,9 @@ public class OuvrageCrudController {
     @ApiOperation(value = "Recherche d'ouvrage par titre ou par auteur")
     @PostMapping(value="/LookForOuvrage")
     public MappingJacksonValue getOuvrageByQuery(@RequestBody(required = false) Map<String,String> criterionList) {
-        return ouvrageJacksonFilters.filtersOnAttributes(ouvrageCrudService.getOuvrageByQuerie(criterionList));
+        List<Ouvrage> ouvrageList = ouvrageCrudService.getOuvrageByQuerie(criterionList);
+
+        return ouvrageJacksonFilters.filtersOnAttributes(ouvrageList);
     }
 
     @ApiOperation(value = "Recherche d'ouvrage par /Id")

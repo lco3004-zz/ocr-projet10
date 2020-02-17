@@ -28,7 +28,7 @@
         <tr th:each="pretWeb : ${pretWebList}">
             <td th:text="${pretWeb.auteur}">Avatar</td>
             <td th:text="${pretWeb.titre}">7.8</td>
-            <td th:text="${#dates.format(pretWeb.dateEmprunt, 'dd-MMM-yyyy')}">02</td>
+            <td th:text="${#dates.format(pretWeb.dateReservation, 'dd-MMM-yyyy')}">02</td>
             <td><a href="#" class="btn btn-info" role="button" th:hidden="${pretWeb.pretprolonge eq 1}"  th:href="@{/prolongerPret(ouvrageIdouvrage=${pretWeb.ouvrageIdouvrage})}">Update</a></td>
         </tr>
         </tbody>

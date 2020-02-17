@@ -28,5 +28,6 @@ public interface OuvrageCrudRepository extends JpaRepository<Ouvrage, Integer>
 
      Optional<OuvrageCrudDtoBatch> findOuvrageDtoByIdouvrage(Integer id);
 
+
 }
 

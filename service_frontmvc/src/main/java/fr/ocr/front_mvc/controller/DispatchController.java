@@ -88,19 +88,22 @@ public class DispatchController {
         if (response.statusCode() == HttpStatus.OK.value()) {
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             ouvrageWebList = objectMapper.readValue(response.body(), new TypeReference<>(){});
-            model.put("ouvragesWebListe",ouvrageWebList);
+
+
+            for (OuvrageWeb x : ouvrageWebList) {
+                x.setNbreResa(getNombreReservation(x));
+            }
 
         }
         else  {
             ouvrageWebList =new ArrayList<>();
-            OuvrageWeb ouvrageWeb = new OuvrageWeb("Aucun Ouvrage ","disponible",0);
+            OuvrageWeb ouvrageWeb = new OuvrageWeb(0,"Aucun Ouvrage ","disponible",-1, -1);
             ouvrageWebList.add(ouvrageWeb);
-            model.put("ouvragesWebListe",ouvrageWebList);
         }
+        model.put("ouvragesWebListe",ouvrageWebList);
         return new ModelAndView(maViewName,model);
 
     }
-
     @RequestMapping(value="/rechercherOuvrages", method = RequestMethod.POST)
     public ModelAndView postRechercherOuvragesCtrl(OuvrageWeb ouvrageWeb)  {
 
@@ -261,6 +264,21 @@ public class DispatchController {
 
         return new ModelAndView(redirectView);
 
+    }
+
+    private int getNombreReservation(OuvrageWeb ouvrageWeb) throws IOException, InterruptedException {
+        int nbResa=0;
+        String uriOuvrageDtoById = "http://localhost:9090/NombreDeReservations/" ;
+
+        HttpRequest request = restClient.requestBuilder(URI.create(uriOuvrageDtoById+ ouvrageWeb.getIdouvrage()), null).GET().build();
+
+        HttpResponse<String> response = restClient.send(request);
+        if (response.statusCode() == HttpStatus.OK.value()) {
+            objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            nbResa = objectMapper.readValue(response.body(), Integer.class);
+
+        }
+        return nbResa;
     }
 
 }

@@ -116,10 +116,10 @@ ALTER TABLE sch10.ouvrage OWNER to rl_projet10;
 -- -------------------------------------------------------------------------
 
 INSERT INTO sch10.ouvrage(titre, auteur, quantite)
-VALUES ('micro services with spring boot', 'ranga rao karanam',  10);
+VALUES ('micro services with spring boot', 'ranga rao karanam',  0);
 
 INSERT INTO sch10.ouvrage(titre, auteur, quantite)
-VALUES ('learning spring boot 2.0', 'greg l. turnquist',  8);
+VALUES ('learning spring boot 2.0', 'greg l. turnquist',  0);
 
 INSERT INTO sch10.ouvrage(titre, auteur, quantite)
 VALUES ('building web apps with spring 5 and angular', 'ranga ajitesh shukla', 12);
@@ -219,6 +219,23 @@ VALUES (12, 3, 0, '2019-11-08');
 
 INSERT INTO sch10.pret (ouvrage_idouvrage, user_iduser, pret_prolonge, date_emprunt)
 VALUES (13, 3, 0, '2019-11-08');
+
+
+INSERT INTO sch10.reservation (ouvrage_idouvrage, user_iduser, date_reservation)
+VALUES (2, 3, '2020-02-07');
+
+INSERT INTO sch10.reservation (ouvrage_idouvrage, user_iduser, date_reservation)
+VALUES (2, 1, '2020-02-04');
+
+INSERT INTO sch10.reservation (ouvrage_idouvrage, user_iduser, date_reservation)
+VALUES (1, 2, '2020-01-14');
+
+INSERT INTO sch10.reservation (ouvrage_idouvrage, user_iduser, date_reservation)
+VALUES (1, 1, '2020-01-04');
+
+INSERT INTO sch10.reservation (ouvrage_idouvrage, user_iduser, date_reservation)
+VALUES (1, 4, '2020-01-18');
+
 
 
 -- fin --
