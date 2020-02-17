@@ -16,11 +16,9 @@
     <packaging>jar</packaging>
 
     <dependencies>
-
         <dependency>
             <groupId>fr.ocr</groupId>
             <artifactId>lib_httpclient</artifactId>
-            <version>1.0.0</version>
         </dependency>
 
         <dependency>

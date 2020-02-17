@@ -37,16 +37,6 @@
     <build.timestamp>${maven.build.timestamp}</build.timestamp>
   </properties>
 
-  <distributionManagement>
-    <repository>
-      <uniqueVersion>false</uniqueVersion>
-      <layout>default</layout>
-      <id>projet10repo</id>
-      <name>Internal repo</name>
-      <url>file:///${project.basedir}/../projet10-repo</url>
-    </repository>
-  </distributionManagement>
-
   <repositories>
     <repository>
       <id>spring-milestones</id>
@@ -57,19 +47,17 @@
       </snapshots>
     </repository>
 
-    <repository>
-      <id>projet10repo</id>
-      <url>file:///${project.basedir}/../projet10-repo</url>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </repository>
-
   </repositories>
 
   <dependencyManagement>
-
     <dependencies>
+
+      <dependency>
+        <groupId>fr.ocr</groupId>
+        <artifactId>lib_httpclient</artifactId>
+        <version>1.0.0</version>
+      </dependency>
+
        <!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 -->
       <dependency>
         <groupId>io.springfox</groupId>
@@ -94,6 +82,13 @@
         <groupId>org.hibernate</groupId>
         <artifactId>hibernate-jpamodelgen</artifactId>
         <version>${hibernate.version}</version>
+        <scope>provided</scope>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+      <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>1.18.12</version>
         <scope>provided</scope>
       </dependency>
     </dependencies>

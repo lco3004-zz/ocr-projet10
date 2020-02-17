@@ -18,7 +18,7 @@ import java.io.Serializable;
 import java.util.Collection;
 
 @Entity
-@Table(name = "ouvrage", schema = "ouvrage", catalog = "db_projet07")
+@Table(name = "ouvrage", schema = "sch10", catalog = "db_projet10")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

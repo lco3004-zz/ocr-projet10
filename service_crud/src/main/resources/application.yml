@@ -8,10 +8,10 @@ spring:
     name: service_crud
   datasource:
     platform: postgres
-    username: rl_projet07
-    password: projet07
+    username: rl_projet10
+    password: projet10
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/db_projet07
+    url: jdbc:postgresql://localhost:5432/db_projet10
   jpa:
     open-in-view: false
     properties:

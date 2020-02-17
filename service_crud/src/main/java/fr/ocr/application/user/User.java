@@ -12,7 +12,7 @@ import java.util.Collection;
 
 
 @Entity
-@Table(name = "user", schema = "usager", catalog = "db_projet07")
+@Table(name = "user", schema = "sch10", catalog = "db_projet10")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

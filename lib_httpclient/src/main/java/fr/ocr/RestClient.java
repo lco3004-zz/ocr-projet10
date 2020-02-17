@@ -5,7 +5,6 @@
 
 package fr.ocr;
 
-import lombok.Getter;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -18,10 +17,13 @@ import java.time.Duration;
 import java.util.Map;
 
 @Component
-@Getter
 public class RestClient {
 
-    private  HttpClient httpClient;
+    public HttpClient getHttpClient() {
+        return httpClient;
+    }
+
+    private final HttpClient httpClient;
 
     public RestClient() {
         httpClient = HttpClient

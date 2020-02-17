@@ -13,7 +13,7 @@ import java.util.Date;
 
 
 @Entity
-@Table(name = "pret", schema = "pret", catalog = "db_projet07")
+@Table(name = "pret", schema = "sch10", catalog = "db_projet10")
 @IdClass(PretPK.class)
 @Data
 @AllArgsConstructor
