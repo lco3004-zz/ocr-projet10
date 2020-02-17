@@ -95,7 +95,6 @@ CREATE TABLE sch10.reservation
 (
     ouvrage_idouvrage integer NOT NULL,
     user_iduser integer NOT NULL,
-    pret_prolonge integer NOT NULL DEFAULT 0,
     date_reservation date NOT NULL,
     CONSTRAINT reservation_pkey PRIMARY KEY (ouvrage_idouvrage, user_iduser) ,
     CONSTRAINT fk_usager FOREIGN KEY (user_iduser)
