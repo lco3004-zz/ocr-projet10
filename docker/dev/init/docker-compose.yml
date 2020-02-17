@@ -1,0 +1,16 @@
+version: '3'
+services:
+  myerp.db:
+    image: postgres:12.1
+    container_name: postgres
+    hostname: postgres
+    volumes:
+      -  ./init/db/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: db_projet10
+      POSTGRES_USER:  rl_projet10
+      POSTGRES_PASSWORD: projet10
+
+    
